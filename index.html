@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1 Ano com Você ❤️</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #1a001f, #3d0b3d, #5c1a5c);
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* estrelas */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url("https://www.transparenttextures.com/patterns/stardust.png");
+    opacity:0.3;
+    z-index:-1;
+}
+
+section{
+    padding:100px 20px;
+}
+
+.frase{
+    font-size:22px;
+    max-width:800px;
+    margin:auto;
+    line-height:1.6;
+    animation:fadeIn 3s ease-in-out;
+}
+
+.autor{
+    margin-top:20px;
+    font-size:16px;
+    opacity:0.8;
+}
+
+.texto{
+    max-width:800px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.8;
+    animation:fadeIn 3s ease-in-out;
+}
+
+button{
+    margin-top:40px;
+    padding:15px 30px;
+    border:none;
+    border-radius:40px;
+    background:#ff4da6;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 0 15px rgba(255,77,166,0.7);
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+#videoFinal{
+    display:none;
+    padding:60px 20px;
+    animation:fadeIn 2s ease-in-out;
+}
+
+iframe{
+    width:90%;
+    max-width:500px;
+    height:300px;
+    border-radius:15px;
+    box-shadow:0 0 25px rgba(0,0,0,0.6);
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- BLOCO 1 -->
+<section>
+    <div class="frase">
+        “O melhor amor é aquele que desperta a alma e nos faz querer mais.”
+        <div class="autor">— Nicholas Sparks</div>
+    </div>
+</section>
+
+<!-- BLOCO 2 -->
+<section>
+    <div class="texto">
+        Nesse um ano ao seu lado, eu só tenho a agradecer por ter você comigo.<br><br>
+
+        Obrigado por me ajudar nos momentos mais difíceis da minha vida, quando parecia que não tinha ninguém… você estava lá.<br><br>
+
+        Você foi apoio, foi força, foi luz quando eu mais precisei.<br><br>
+
+        E nesse tempo eu percebi uma coisa muito importante:<br>
+        eu não quero ficar ao seu lado só por um tempo…<br>
+        eu quero ficar ao seu lado para a vida toda.<br><br>
+
+        Eu te amo muito, minha vida. 🩵🩵🫶🏻<br><br>
+
+        E se esse foi só o nosso primeiro ano…<br>
+        mal posso esperar por todos os outros que ainda vamos viver juntos. ❤️
+    </div>
+
+    <button onclick="mostrarVideo()">Tem mais uma coisa… 💌</button>
+</section>
+
+<!-- BLOCO 4 -->
+<div id="videoFinal">
+    <h2>Nosso momento mais especial 🎥</h2>
+
+    <iframe
+        src="https://www.youtube.com/embed/RHou6daNMIc?autoplay=1"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+    </iframe>
+</div>
+
+<script>
+function mostrarVideo(){
+    document.getElementById("videoFinal").style.display = "block";
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+}
+</script>
+
+</body>
+</html>
