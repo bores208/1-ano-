@@ -8,27 +8,15 @@
 <style>
 body{
     margin:0;
-    padding:0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #1a001f, #3d0b3d, #5c1a5c);
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #14001a, #3b0a3f, #5c1a5c);
     color:white;
     text-align:center;
-    overflow-x:hidden;
-}
-
-/* estrelas */
-body::before{
-    content:"";
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:url("https://www.transparenttextures.com/patterns/stardust.png");
-    opacity:0.3;
-    z-index:-1;
+    overflow:hidden;
 }
 
 section{
-    padding:100px 20px;
+    padding:80px 20px;
 }
 
 .frase{
@@ -36,44 +24,43 @@ section{
     max-width:800px;
     margin:auto;
     line-height:1.6;
-    animation:fadeIn 3s ease-in-out;
-}
-
-.autor{
-    margin-top:20px;
-    font-size:16px;
-    opacity:0.8;
-}
-
-.texto{
-    max-width:800px;
-    margin:auto;
-    font-size:18px;
-    line-height:1.8;
-    animation:fadeIn 3s ease-in-out;
 }
 
 button{
-    margin-top:40px;
-    padding:15px 30px;
+    padding:12px 25px;
     border:none;
-    border-radius:40px;
+    border-radius:30px;
     background:#ff4da6;
     color:white;
     font-size:16px;
     cursor:pointer;
     transition:0.3s;
-    box-shadow:0 0 15px rgba(255,77,166,0.7);
+    position:relative;
 }
 
 button:hover{
     transform:scale(1.1);
 }
 
-#videoFinal{
+#nao{
+    position:absolute;
+}
+
+.hidden{
     display:none;
-    padding:60px 20px;
-    animation:fadeIn 2s ease-in-out;
+}
+
+#videoContainer{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 }
 
 iframe{
@@ -81,29 +68,27 @@ iframe{
     max-width:500px;
     height:300px;
     border-radius:15px;
-    box-shadow:0 0 25px rgba(0,0,0,0.6);
-}
-
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- BLOCO 1 -->
-<section>
+<section id="abertura">
     <div class="frase">
-        “O melhor amor é aquele que desperta a alma e nos faz querer mais.”
-        <div class="autor">— Nicholas Sparks</div>
+        “O melhor amor é aquele que desperta a alma e nos faz querer mais.”<br>
+        — Nicholas Sparks
     </div>
 </section>
 
-<!-- BLOCO 2 -->
-<section>
-    <div class="texto">
+<section id="pergunta">
+    <h2 id="textoPergunta">Você me ama?</h2>
+    <button onclick="respostaSim()">SIM</button>
+    <button id="nao" onmouseover="fugir()">NÃO</button>
+</section>
+
+<section id="declaracao" class="hidden">
+    <div style="max-width:800px; margin:auto; line-height:1.8;">
         Nesse um ano ao seu lado, eu só tenho a agradecer por ter você comigo.<br><br>
 
         Obrigado por me ajudar nos momentos mais difíceis da minha vida, quando parecia que não tinha ninguém… você estava lá.<br><br>
@@ -120,13 +105,12 @@ iframe{
         mal posso esperar por todos os outros que ainda vamos viver juntos. ❤️
     </div>
 
+    <br><br>
     <button onclick="mostrarVideo()">Tem mais uma coisa… 💌</button>
 </section>
 
-<!-- BLOCO 4 -->
-<div id="videoFinal">
+<div id="videoContainer">
     <h2>Nosso momento mais especial 🎥</h2>
-
     <iframe
         src="https://www.youtube.com/embed/RHou6daNMIc?autoplay=1"
         frameborder="0"
@@ -136,12 +120,45 @@ iframe{
 </div>
 
 <script>
+let etapa = 0;
+
+function respostaSim(){
+    const texto = document.getElementById("textoPergunta");
+
+    if(etapa === 0){
+        texto.innerText = "Você tem certeza?";
+        etapa++;
+    } else if(etapa === 1){
+        texto.innerText = "Tem certeza mesmo?";
+        etapa++;
+    } else if(etapa === 2){
+        texto.innerText = "Agora sim?";
+        etapa++;
+    } else {
+        document.getElementById("pergunta").classList.add("hidden");
+        document.getElementById("declaracao").classList.remove("hidden");
+        document.body.style.overflow = "auto";
+    }
+}
+
+function fugir(){
+    const botao = document.getElementById("nao");
+
+    const largura = window.innerWidth - 100;
+    const altura = window.innerHeight - 50;
+
+    const novaPosX = Math.random() * largura;
+    const novaPosY = Math.random() * altura;
+
+    const tamanho = Math.random() * (1.5 - 0.7) + 0.7;
+
+    botao.style.left = novaPosX + "px";
+    botao.style.top = novaPosY + "px";
+    botao.style.transform = "scale(" + tamanho + ")";
+}
+
 function mostrarVideo(){
-    document.getElementById("videoFinal").style.display = "block";
-    window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth"
-    });
+    document.getElementById("videoContainer").style.display = "flex";
 }
 </script>
 
